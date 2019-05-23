@@ -4,7 +4,7 @@ import styles from "./styles.css";
 
 function DynamicTable(props) {
   const { data, config } = props;
-  const { components, keys, labels } = config;
+  const { components, keys, labels = {} } = config;
 
   const dataKeys = keys || Object.keys(data[0]);
 
