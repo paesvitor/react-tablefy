@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./styles.css";
+import classnames from "classnames";
+import s from "./styles.css";
 
 function DynamicTable(props) {
-  const { data, config } = props;
-  const { components, keys, labels = {} } = config;
-
+  const { data, config, className } = props;
+  const { components, keys, labels = {}, styles = {} } = config;
+  const rootClasses = classnames(className, s.tablefy);
   const dataKeys = keys || Object.keys(data[0]);
 
   const renderTableCellContent = (key, data) => {
@@ -21,22 +22,27 @@ function DynamicTable(props) {
   };
 
   return (
-    <section id="tablefy" className={styles.tablefy}>
-      <table>
-        <thead>
-          <tr>
+    <section id="tablefy">
+      <table style={{ ...styles.root }} className={rootClasses}>
+        <thead style={{ ...styles.head }}>
+          <tr style={{ ...styles.headRow }}>
             {dataKeys.map(key => (
-              <th key={key} align="left">
+              <th style={{ ...styles.headRowCell }} key={key} align="left">
                 {labels[key] || key}
               </th>
             ))}
           </tr>
         </thead>
-        <tbody>
+        <tbody style={{ ...styles.body }}>
           {data.map((row, i) => (
-            <tr key={`${row + i}`}>
+            <tr style={{ ...styles.bodyRow }} key={`${row + i}`}>
               {dataKeys.map(key => (
-                <td key={key} component="th" scope="row">
+                <td
+                  style={{ ...styles.bodyRowCell }}
+                  key={key}
+                  component="th"
+                  scope="row"
+                >
                   {renderTableCellContent(key, row[key])}
                 </td>
               ))}
@@ -50,6 +56,7 @@ function DynamicTable(props) {
 
 DynamicTable.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object),
+  className: PropTypes.string,
   config: PropTypes.shape({
     components: PropTypes.objectOf(
       PropTypes.shape({
@@ -58,7 +65,8 @@ DynamicTable.propTypes = {
       })
     ),
     labels: PropTypes.object,
-    keys: PropTypes.arrayOf(PropTypes.string)
+    keys: PropTypes.arrayOf(PropTypes.string),
+    styles: PropTypes.objectOf(PropTypes.object)
   })
 };
 

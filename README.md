@@ -128,9 +128,78 @@ const tableConfig = {
 };
 ```
 
+## Styling
+
+- 1 - With styled components
+
+```jsx
+import styled from "styled-components";
+import Table from "react-tablefy";
+
+const StyledTable = styled(Table)`
+  // Your custom styles
+  tr {
+    background: red;
+  }
+`;
+
+class WithStyledComponent extends Component {
+  render() {
+    return <StyledTable data={data} />;
+  }
+}
+```
+
+- 2 - With inline css (style object on config)
+
+```jsx
+import React, { Component } from "react";
+import Table from "react-tablefy";
+
+class WithInlineCSS extends Component {
+  render() {
+    // Step 1
+    const tableConfig = {
+      styles: {
+        // Available styles
+        root: {},
+
+        head: {},
+        headRow: {},
+        headRowCell: {},
+
+        body: {},
+        bodyRow: {},
+        bodyRowCell: {}
+      }
+    };
+
+    // Step 2
+    return <Table data={data} config={tableConfig} />;
+  }
+}
+```
+
+- 3 - With custom class
+
+```jsx
+import React, { Component } from "react";
+import Table from "react-tablefy";
+import styles from './styles.css'
+
+class WithInlineCSS extends Component {
+  render() {
+    return <Table
+      className={styles.customClass}
+      data={data}
+    />;
+    };
+  }
+}
+```
+
 ## TODO
 
-- Add custom classes and components to table
 - Improve writing of this documentation (my english sucks haha)
 
 ## License

@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-
 import Table from "react-tablefy";
 import data from "./data.json";
-
 import Image from "./Image";
 
 export default class App extends Component {
@@ -13,12 +11,20 @@ export default class App extends Component {
           component: <Image />,
           useProp: "src"
         }
+      },
+
+      // keys: [],
+      // labels: {},
+      styles: {
+        root: {
+          // background: "#fff"
+        }
       }
     };
 
     return (
       <div>
-        <Table data={data} config={tableConfig} />
+        <Table className="doidera" data={data} config={tableConfig} />
       </div>
     );
   }
