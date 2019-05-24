@@ -84,9 +84,9 @@ But... The field displayName is an image, and it's rendering as an String, let's
 
 - 1.2: Inside components object set the key you want to display a custom Component (in our example, **displayImage**).
 
-- 1.3: We want to show the value of this key **(displayImage)** for this row inside the src prop. We need to say that prop **src** gets a value of **displayImage** using tablefy variables (tablefy understands that the variables are within parentheses, then you can access the value of any key within that line, using paranteses).
-- 1.3.1: variable **(self)** returns the current value for the key you are customizing. In this example, it takes the value of displayImage for that line and places it inside src.
-- 1.3.2: variable **(name)** will get the value of **name** key for this row and place inside **alt** prop.
+- 1.3: We want to show the value of key **(displayImage)** for each table row inside the Image Component **src prop**. We need to say that prop **src** gets a value of **displayImage** using tablefy variables (tablefy understands that the variables are within parentheses. You can access the value of any key in a table row, using paranteses).
+- 1.3.1: variable **(self) DEFAULT** returns the current value for the key you are customizing. In this example, it takes the value of displayImage key for that table row and places it inside src prop.
+- 1.3.2: variable **(name)** will get the value of **name** key for this table row and place inside **alt** prop.
 
 - 2: Set this object to config prop.
 
@@ -121,11 +121,11 @@ This will output:
 
 ### Components actions
 
-You can pass functions to custom Components, argument names has to be the same as the keys you want to retrieve value.
+You can pass functions to custom Components, argument names has to be the same as the keys you want to get the value.
 
 1 - Create a function with argument names same as the key values you want to get.
 
-1.1 - In this example, we will print the name of the character present in the table row.
+1.1 - In this example, we will print the name of the character present in the table row on the console.
 
 1.2 - Tablefy will search for the key **name** in the row and pass it to your function.
 
@@ -158,9 +158,9 @@ class TableWithActions extends Component {
 
 Let's say you want to perform an action by clicking on a row in the table.
 
-1 - add a key called **onClickRow** to your configuration object assigning it the function you want to call, using the same principles described in the above example.
+1 - add a key called **onClickRow** to your configuration object assigning to it the function you want to call, using the same parameter principles described in the above example.
 
-1.1 - The function will search for a key call **name** present on the row and set this value as parameter on your function.
+1.1 - The function will search for a key call **name** present on the table row and set this value as parameter on your function.
 
 ```jsx
 import React, { Component } from "react";
