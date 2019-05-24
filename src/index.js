@@ -13,7 +13,7 @@ function DynamicTable(props) {
     switch (typeof s) {
       case "string":
         const c = s.replace(/(^.*\(|\).*$)/g, "");
-        return rowData[c === "this" ? key : c];
+        return rowData[c === "self" ? key : c];
       case "function": {
         const params = getParams(s);
         const data = params.map(p => rowData[p]);

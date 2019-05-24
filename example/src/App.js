@@ -14,8 +14,8 @@ function App() {
 
   const tableConfig = {
     components: {
-      displayImage: <Image src="(this)" alt="(name)" />,
-      name: <button children="(this)" />
+      displayImage: <Image src="(self)" alt="(name)" />,
+      name: <button children="(self)" />
     },
     onClickRow: handleClickTableRow,
 
