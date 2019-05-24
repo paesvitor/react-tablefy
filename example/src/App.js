@@ -3,29 +3,32 @@ import Table from "react-tablefy";
 import data from "./data.json";
 import Image from "./Image";
 
-export default class App extends Component {
-  render() {
-    const tableConfig = {
-      components: {
-        displayImage: {
-          component: <Image />,
-          useProp: "src"
-        }
-      },
+function App() {
+  const genericMethod = (age, location) => {};
 
-      // keys: [],
-      // labels: {},
-      styles: {
-        root: {
-          // background: "#fff"
-        }
-      }
-    };
+  const handleClickButton = name => {};
 
-    return (
-      <div>
-        <Table className="doidera" data={data} config={tableConfig} />
-      </div>
-    );
-  }
+  const handleClickTableRow = (name, age) => {
+    console.log(name);
+  };
+
+  const tableConfig = {
+    components: {
+      displayImage: <Image src="(this)" alt="(name)" />,
+      name: <button children="(this)" />
+    },
+    onClickRow: handleClickTableRow,
+
+    labels: {
+      displayImage: "Image"
+    }
+  };
+
+  return (
+    <div>
+      <Table data={data} config={tableConfig} />
+    </div>
+  );
 }
+
+export default App;
