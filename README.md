@@ -18,7 +18,23 @@ npm install --save react-tablefy
 yarn add react-tablefy
 ```
 
+## Table of Contents
+
+- [Usage](#Usage)
+  - [Basic](#Basic)
+  - [Custom Components](#Custom-components)
+- [Actions](#Actions)
+  - [Components Actions](#Components-Actions)
+  - [Row Actions](#Row-Actions)
+- [Config Object](#Config-object)
+- [Styling](#Styling)
+  - [With Styled components](#with-styled-components)
+  - [With Config Object](#with-config-object)
+  - [With Custom Class](#with-custom-class)
+
 ## Usage
+
+### Basic
 
 Let's say you have an array of objects and you want to display this into a table
 
@@ -57,6 +73,8 @@ class SimpleTableExample extends Component {
 This will output:
 
 ![alt text](https://user-images.githubusercontent.com/17584531/58286462-2c5e2300-7d85-11e9-9b26-2e19c6ab3df4.png)
+
+### Custom Components
 
 But... The field displayName is an image, and it's rendering as an String, let's say you want to display an image component to this field.
 
@@ -194,7 +212,7 @@ const tableConfig = {
 
 ## Styling
 
-- 1 - With styled components
+### With Styled components
 
 ```jsx
 import styled from "styled-components";
@@ -214,7 +232,7 @@ class WithStyledComponent extends Component {
 }
 ```
 
-- 2 - With inline css (style object on config)
+### With Config Object
 
 ```jsx
 import React, { Component } from "react";
@@ -244,7 +262,7 @@ class WithInlineCSS extends Component {
 }
 ```
 
-- 3 - With custom class
+### With custom class
 
 ```jsx
 import React, { Component } from "react";
