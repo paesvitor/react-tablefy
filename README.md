@@ -31,6 +31,8 @@ yarn add react-tablefy
   - [With Styled components](#with-styled-components)
   - [With Config Object](#with-config-object)
   - [With Custom Class](#with-custom-class)
+- [TODO](#Todo)
+- [License](#License)
 
 ## Usage
 
@@ -283,6 +285,7 @@ class WithInlineCSS extends Component {
 ## TODO
 
 - Improve writing of this documentation (my english sucks haha)
+- Tests
 
 ## License
 
