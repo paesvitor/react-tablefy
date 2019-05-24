@@ -5,20 +5,51 @@ import s from "./styles.css";
 
 function DynamicTable(props) {
   const { data, config, className } = props;
-  const { components, keys, labels = {}, styles = {} } = config;
+  const { components, keys, labels = {}, styles = {}, onClickRow } = config;
   const rootClasses = classnames(className, s.tablefy);
   const dataKeys = keys || Object.keys(data[0]);
 
-  const renderTableCellContent = (key, data) => {
-    if (components[key]) {
-      const useProp = components[key].useProp || "children";
-
-      return React.cloneElement(components[key].component, {
-        [`${useProp}`]: data
-      });
-    } else {
-      return data;
+  const extractKey = (s, rowData, key) => {
+    switch (typeof s) {
+      case "string":
+        const c = s.replace(/(^.*\(|\).*$)/g, "");
+        return rowData[c === "self" ? key : c];
+      case "function": {
+        const params = getParams(s);
+        const data = params.map(p => rowData[p]);
+        return () => s(...data);
+      }
     }
+  };
+
+  function getParams(func) {
+    var STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/gm;
+    var ARGUMENT_NAMES = /([^\s,]+)/g;
+    var fnStr = func.toString().replace(STRIP_COMMENTS, "");
+    var result = fnStr
+      .slice(fnStr.indexOf("(") + 1, fnStr.indexOf(")"))
+      .match(ARGUMENT_NAMES);
+    if (result === null) result = [];
+    return result;
+  }
+
+  const renderTableCellContent = (key, cellData, rowData) => {
+    if (components[key]) {
+      const component = components[key];
+      let props = {};
+      Object.keys(component.props).map(e => {
+        props[e] = extractKey(component.props[e], rowData, key);
+      });
+      return React.cloneElement(component, props);
+    } else {
+      return cellData;
+    }
+  };
+
+  const setOnClickRowFunction = rowData => {
+    const params = getParams(onClickRow);
+    const data = params.map(p => rowData[p]);
+    return onClickRow(...data);
   };
 
   return (
@@ -35,7 +66,11 @@ function DynamicTable(props) {
         </thead>
         <tbody style={{ ...styles.body }}>
           {data.map((row, i) => (
-            <tr style={{ ...styles.bodyRow }} key={`${row + i}`}>
+            <tr
+              onClick={() => onClickRow && setOnClickRowFunction(row)}
+              style={{ ...styles.bodyRow }}
+              key={`${row + i}`}
+            >
               {dataKeys.map(key => (
                 <td
                   style={{ ...styles.bodyRowCell }}
@@ -43,7 +78,7 @@ function DynamicTable(props) {
                   component="th"
                   scope="row"
                 >
-                  {renderTableCellContent(key, row[key])}
+                  {renderTableCellContent(key, row[key], row)}
                 </td>
               ))}
             </tr>
@@ -55,15 +90,10 @@ function DynamicTable(props) {
 }
 
 DynamicTable.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object),
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
   className: PropTypes.string,
   config: PropTypes.shape({
-    components: PropTypes.objectOf(
-      PropTypes.shape({
-        component: PropTypes.node,
-        useProp: PropTypes.string
-      })
-    ),
+    components: PropTypes.objectOf(PropTypes.object),
     labels: PropTypes.object,
     keys: PropTypes.arrayOf(PropTypes.string),
     styles: PropTypes.objectOf(PropTypes.object)
