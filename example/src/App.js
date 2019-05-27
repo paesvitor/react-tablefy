@@ -8,20 +8,16 @@ function App() {
 
   const handleClickButton = name => {};
 
-  const handleClickTableRow = (name, age) => {
-    console.log(name);
+  const handleClickTableRow = fullName => {
+    console.log(fullName);
   };
 
   const tableConfig = {
-    components: {
-      displayImage: <Image src="(self)" alt="(name)" />,
-      name: <button children="(self)" />
+    alias: {
+      fullName: "user.product.fullName"
     },
     onClickRow: handleClickTableRow,
-
-    labels: {
-      displayImage: "Image"
-    }
+    keys: ["fullName"]
   };
 
   return (
