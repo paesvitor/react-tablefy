@@ -5,7 +5,13 @@ import s from "./styles.css";
 
 function DynamicTable(props) {
   const { data, config, className } = props;
-  const { components, keys, labels = {}, styles = {}, onClickRow } = config;
+  const {
+    components = {},
+    keys,
+    labels = {},
+    styles = {},
+    onClickRow
+  } = config;
   const rootClasses = classnames(className, s.tablefy);
   const dataKeys = keys || Object.keys(data[0]);
 
