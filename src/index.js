@@ -88,7 +88,6 @@ function DynamicTable(props) {
       return React.cloneElement(component, props);
     } else {
       const a = diveIntoObject(keyInformation.path, rowData);
-      console.log(a);
       return diveIntoObject(keyInformation.path, rowData);
     }
   };
