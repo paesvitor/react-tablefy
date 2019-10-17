@@ -1,23 +1,15 @@
 import React, { Component } from "react";
 import Table from "react-tablefy";
-import data from "./data.json";
+import data from "./example.json";
 import Image from "./Image";
 
 function App() {
-  const genericMethod = (age, location) => {};
-
-  const handleClickButton = name => {};
-
-  const handleClickTableRow = fullName => {
-    console.log(fullName);
+  const handleClickTableRow = name => {
+    console.log(name);
   };
 
   const tableConfig = {
-    alias: {
-      fullName: "user.product.fullName"
-    },
-    onClickRow: handleClickTableRow,
-    keys: ["fullName"]
+    onClickRow: handleClickTableRow
   };
 
   return (
