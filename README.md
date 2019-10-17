@@ -1,6 +1,6 @@
 ![alt text](https://user-images.githubusercontent.com/17584531/58372075-cbeaf500-7eee-11e9-8685-a79f24e9f8a7.png)
 
-> A Dynamic React Table Component
+> A library to render HTML tables in React from a array of objects, simply and quickly.
 
 [![NPM](https://img.shields.io/npm/v/react-tablefy.svg)](https://www.npmjs.com/package/react-tablefy) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
