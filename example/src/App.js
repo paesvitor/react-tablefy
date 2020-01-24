@@ -9,7 +9,10 @@ function App() {
   };
 
   const tableConfig = {
-    onClickRow: handleClickTableRow
+    onClickRow: handleClickTableRow,
+    components: {
+      displayImage: <Image src="(self)" />
+    }
   };
 
   return (

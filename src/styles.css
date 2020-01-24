@@ -1,12 +1,13 @@
 .tablefy {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  font-family: inherit, Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
+  table-layout: fixed;
 }
 
 .tablefy td,
 .tablefy th {
-  border: 1px solid #ddd;
+  border: 1px solid #ececec;
   padding: 8px;
 }
 
@@ -15,13 +16,26 @@
 }
 
 .tablefy tr:hover {
-  background-color: #ddd;
+  background-color: rgba(0, 0, 0, 0.12);
+  transition: 0.2s all;
+  cursor: pointer;
 }
 
 .tablefy th {
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 6px;
+  padding-bottom: 6px;
   text-align: left;
-  background-color: #4caf50;
-  color: white;
+  color: #000;
+  border: none;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+}
+
+.tablefy th:hover {
+  border-color: tomato;
+  transition: 0.2s border;
+}
+
+.tablefy thead tr:hover {
+  background: transparent;
 }
